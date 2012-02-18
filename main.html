@@ -1,0 +1,17 @@
+<!doctype html>
+<script>
+chrome.webRequest.onBeforeRequest.addListener(
+  function(info) {
+	console.log("Cat intercepted: " + info.url);
+	return {cancel: true};
+  },
+  // filters
+  {
+    urls: [
+      "*://*.baidu.com/*"
+    ],
+  },
+  // extraInfoSpec
+  ["blocking"]
+);
+</script>
