@@ -1,0 +1,14 @@
+{
+	"name": "LiveDog",
+	"version": "1.0",
+	"description": "This extension will auto synchronzie Google Calendar to control your Internet access.",
+	"browser_action": {
+		"default_icon": "icon.png",
+		"popup": "popup.html"
+	},
+	"permissions": [
+		"WebRequest",
+		"*://*.google.com",
+		"http://api.flickr.com/"
+	]
+}
