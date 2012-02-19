@@ -1,14 +1,24 @@
 <!doctype html>
+
+<script src="idog.js"></script>
+
 <script>
+var mWhiteURLs = "wang.me";
+
 chrome.webRequest.onBeforeRequest.addListener(
   function(info) {
-	console.log("Cat intercepted: " + info.url);
+	var allow = canAccess(info.url);
+
+	mWhiteURLs = info.url;
+	
+	console.log("Cat intercepted= " + allow + " :" +  info.url);
 	return {cancel: true};
   },
   // filters
   {
     urls: [
-      "*://*.baidu.com/*"
+	"*://*.*.*/*"
+	//"<all_urls>"
     ],
   },
   // extraInfoSpec

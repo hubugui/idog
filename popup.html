@@ -1,50 +1,57 @@
+<html>
+<head></head>
+<title>LiveDog' Page</title>
+
+<script src="idog.js"></script>
+<script language = "javascript">
+function loadSetting()
+{
+	var white_list_area = document.getElementById("white_list_area");
+
+	var backgroundPage = chrome.extension.getBackgroundPage();
+
+	white_list_area.value = backgroundPage.mWhiteURLs;
+}
+</script>
+
 <style>
-body {
-  min-width:357px;
-  overflow-x:hidden;
+body 
+{
+	min-width:357px;
+	overflow-x:hidden;
 }
 
-img {
-  margin:5px;
-  border:2px solid black;
-  vertical-align:middle;
-  width:75px;
-  height:75px;
+img
+{
+	margin:5px;
+	border:2px solid black;
+	vertical-align:middle;
+	width:75px;
+	height:75px;
 }
 </style>
 
-<script>
-var req = new XMLHttpRequest();
-req.open(
-    "GET",
-    "http://api.flickr.com/services/rest/?" +
-        "method=flickr.photos.search&" +
-        "api_key=90485e931f687a9b9c2a66bf58a3861a&" +
-        "text=hello%20world&" +
-        "safe_search=1&" +  // 1 is "safe"
-        "content_type=1&" +  // 1 is "photos only"
-        "sort=relevance&" +  // another good one is "interestingness-desc"
-        "per_page=20",
-    true);
-req.onload = showPhotos;
-req.send(null);
+<body onload="loadSetting()">
+	<div align="center">
+		<h2>LiveDog Setting</h2>
+	</div>
 
-function showPhotos() {
-  var photos = req.responseXML.getElementsByTagName("photo");
+	<div>
+		<input name="url_list" type="radio" id="white_list" value="1" checked="true" tabIndex="1">
+		White list of URLs
+	</div>
 
-  for (var i = 0, photo; photo = photos[i]; i++) {
-    var img = document.createElement("image");
-    img.src = constructImageURL(photo);
-    document.body.appendChild(img);
-  }
-}
+	<div>
+		<textarea name="white_list_area" id="white_list_area" rows=8 cols=64></textarea>
+	</div>
+	
+	<div>
+		<input name="url_list" type="radio" id="black_list" value="2" tabIndex="2">
+		Black list of URLs
+	</div>
 
-// See: http://www.flickr.com/services/api/misc.urls.html
-function constructImageURL(photo) {
-  return "http://farm" + photo.getAttribute("farm") +
-      ".static.flickr.com/" + photo.getAttribute("server") +
-      "/" + photo.getAttribute("id") +
-      "_" + photo.getAttribute("secret") +
-      "_s.jpg";
-}
-</script>
+	<div>
+		<textarea name="black_list_area" id="black_list_area" rows=8 cols=64></textarea>
+	</div>	
+</body>
+</html>
