@@ -16,8 +16,15 @@ iDog is a Chrome extension, it can block Chrome internet access when your need, 
 4.Black List of URLs
   Cancel internet access with black list urls.
 
+=======
+ Third
+=======
+
+1. Thanks for ParseUri(Split URLs in JavaScript).
+   http://blog.stevenlevithan.com/archives/parseuri
+
 -----------------
 2012-02-21 Ver1.0
 -----------------
 
-No sync with Google Calendar.
+Test by Chrome 17.0.963.56, No sync with Google Calendar.
