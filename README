@@ -2,19 +2,19 @@
  iDog
 =======
 
-This extension can block Chrome internet access when your need, it have 4 work mode:
+iDog is a Chrome extension, it can block Chrome internet access when your need, it have 4 work mode:
 
 1.Black All
-  iDog will cancel all internet access, exclude the protocol of "file" and "chrome:extension".
+  Cancel all internet access, exclude the protocol of "file" and "chrome:extension".
 
 2.Google Calendar
-  iDog will cancel internet access with current time & Google Calendar task.
+  Cancel internet access with current time & Google Calendar task.
 
 3.White list of URLs
-  iDog only allow internet access with white list urls.
+  Only allow internet access with white list urls.
 
 4.Black List of URLs
-  iDog will cancel internet access with black list urls.
+  Cancel internet access with black list urls.
 
 -----------------
 2012-02-21 Ver1.0
