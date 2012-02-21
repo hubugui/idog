@@ -8,17 +8,17 @@ iDog is a Chrome extension, it can block Chrome internet access when you need, i
   Cancel all internet access, exclude the protocol of "file" and "chrome:extension".
 
 2.Google Calendar
-  Cancel internet access with current time & Google Calendar task.
+  Cancel internet access to website if Google Calendar task is work hours.
 
 3.White list of URLs
-  Only allow internet access with white list urls.
+  Only allow internet access to the website of the white list.
 
 4.Black List of URLs
-  Cancel internet access with black list urls.
+  Cancel internet access to the website of the  black list.
 
-=======
- Third
-=======
+================
+ Third software
+================
 
 1. Thanks for ParseUri(Split URLs in JavaScript).
    http://blog.stevenlevithan.com/archives/parseuri
@@ -27,4 +27,4 @@ iDog is a Chrome extension, it can block Chrome internet access when you need, i
 2012-02-21 Ver1.0
 -----------------
 
-Test by Chrome 17.0.963.56, No sync with Google Calendar.
+Test use Chrome 17.0.963.56, not support mode 2.
