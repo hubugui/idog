@@ -1,15 +1,25 @@
 {
-	"name": "LiveDog",
+	"name": "iDog",
 	"version": "1.0",
-	"description": "This extension will auto synchronzie Google Calendar to control your Internet access.",
-	"background_page": "main.html",
-	"browser_action": {
-		"default_icon": "icon.png",
-		"popup": "popup.html"
+	"description": "This extension can block Chrome internet access when your need.",
+	"background_page": "background.html",
+	"options_page": "popup.html",
+	"icons": 
+	{
+		"16": "icon.jpg",
+		"48": "icon.jpg",
+		"128": "icon.jpg"
+	},
+	"browser_action":
+	{
+		"default_icon": "icon.jpg"
 	},
 
-	"permissions": ["webRequest", 
-			"webRequestBlocking",
-			"<all_urls>"
+	"permissions":
+	[
+		"tabs",
+		"webRequest",
+		"webRequestBlocking",
+		"<all_urls>"
 	]
 }

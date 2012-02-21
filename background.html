@@ -1,0 +1,35 @@
+<!doctype html>
+
+<script src="parseUri.js"></script>
+<script src="idog.js"></script>
+<script>
+idog_module_init();
+
+chrome.browserAction.onClicked.addListener
+(
+	function(tab)
+	{
+		chrome.tabs.create({url: "popup.html"}, function(tab)
+		{
+			;
+		});		
+	}
+);
+
+chrome.webRequest.onBeforeRequest.addListener
+(
+	function(info)
+	{
+		var allow = idog_url_allow_access(info.url);
+		return {cancel: !allow};
+	},
+
+	// filters
+	{
+		urls: ["<all_urls>"],
+	},
+
+	// extraInfoSpec
+	["blocking"]
+);
+</script>

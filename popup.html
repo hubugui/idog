@@ -1,57 +1,56 @@
 <html>
-<head></head>
-<title>LiveDog' Page</title>
+<title>iDog</title>
 
-<script src="idog.js"></script>
-<script language = "javascript">
-function loadSetting()
-{
-	var white_list_area = document.getElementById("white_list_area");
+<script src="idog_popup.js"></script>
+<body onload="load_setting()">
+<div align=center> 
+		<tr align=center>
+			<td>
+				<h1>iDog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>				
+			</td>
+		</tr>
 
-	var backgroundPage = chrome.extension.getBackgroundPage();
+	<table>
+		<form>
+			<tr>
+				<td>
+					<input name="work_mode" type="radio" id="block_all" value="1" checked="true" tabIndex="1">
+					Block All
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input name="work_mode" type="radio" id="gcalendar" value="2" tabIndex="2" disabled>
+					<s>Google Calendar(unrealized)</s>
+				</td>
+			</tr>
 
-	white_list_area.value = backgroundPage.mWhiteURLs;
-}
-</script>
+			<tr>
+				<td>
+					<input name="work_mode" type="radio" id="white_list" value="3" tabIndex="3">
+					White list of URLs
 
-<style>
-body 
-{
-	min-width:357px;
-	overflow-x:hidden;
-}
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					
+					<input name="work_mode" type="radio" id="black_list" value="4" tabIndex="4">
+					Black list of URLs
+				</td>
+			</tr>
 
-img
-{
-	margin:5px;
-	border:2px solid black;
-	vertical-align:middle;
-	width:75px;
-	height:75px;
-}
-</style>
+			<tr>
+				<td>
+					<textarea name="white_list_area" id="white_list_area" rows=24 cols=22></textarea>
+					&nbsp;&nbsp;&nbsp;
+					<textarea name="black_list_area" id="black_list_area" rows=24 cols=22></textarea>
+				</td>
+			</tr>
 
-<body onload="loadSetting()">
-	<div align="center">
-		<h2>LiveDog Setting</h2>
-	</div>
-
-	<div>
-		<input name="url_list" type="radio" id="white_list" value="1" checked="true" tabIndex="1">
-		White list of URLs
-	</div>
-
-	<div>
-		<textarea name="white_list_area" id="white_list_area" rows=8 cols=64></textarea>
-	</div>
-	
-	<div>
-		<input name="url_list" type="radio" id="black_list" value="2" tabIndex="2">
-		Black list of URLs
-	</div>
-
-	<div>
-		<textarea name="black_list_area" id="black_list_area" rows=8 cols=64></textarea>
-	</div>	
+			<tr align=center>
+				<td>
+					<input type="submit" value="Save" name="save" onClick="save_setting();" tabindex="5"/>
+					<input type="submit" value="Restore" name="restore" onClick="load_setting()" tabindex="6"/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+			</tr>
+		</form>
+	</table>
+</div>
 </body>
 </html>
