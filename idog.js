@@ -1,67 +1,184 @@
-var mURLs = "baidu.com";
+/**
+ * idog.js
+ *
+ * author: hubugui@gmail.com
+ */
 
-function init()
+var idog = new Object();
+var idog_white_index = 0;
+var idog_black_index = 1;
+
+function idog_blockall()
 {
+	return idog.blockall;
 }
 
-function canAccess(url)
+function idog_blockall_set(checked)
+{
+	idog.blockall = checked;
+}
+
+function idog_gcalendar()
+{
+	return idog.google_calendar;
+}
+
+function idog_gcalendar_set(checked)
+{
+	idog.google_calendar = checked;
+}
+
+function idog_checked(index)
+{
+	return idog.list[index].checked;
+}
+
+function idog_checked_set(index, checked)
+{
+	idog.list[index].checked = checked;
+}
+
+function idog_urls(index)
+{
+	return idog.list[index].urls;
+}
+
+function idog_urls_set(index, urls)
+{
+	idog.list[index].urls = urls;
+}
+
+function idog_url_match(url, urls)
+{
+	var host = parseUri(url).host;
+
+	for (var i = 0; i < urls.length; i++)
+	{
+		if (host.indexOf(urls[i]) > -1)
+			return true;
+	}
+
+	return false;
+}
+
+function idog_url_allow_access_gcalendar(url)
+{
+	return true;
+}
+
+function idog_url_allow_access(url)
 {
 	var rc = false;
-	var popups = chrome.extension.getViews({type: 'popup'});
+	var protocol = parseUri(url).protocol;
 
-	mURLs = url;
+	if (protocol.toLowerCase() == "file")
+		return true;
+	if (protocol.toLowerCase() == "chrome-extension")
+		return true;
 
-	//alert(popups);
-	//alert(popups.length);
-/*
-	if (popups.length > 0)
+	if (idog_blockall() == false)
 	{
-		var popup = popups[0];
-
-		alert(popup);
-		var wl = popup.document.getElementById("white_list");
-		alert(wl);
-	}
-*/
-	if (isChecked("white_list"))
-	{
-		rc = matchURL(url, getURLs("white_list_area"));
-	}
-	else if (isChecked("black_list"))	
-	{
-		rc = !matchURL(url, getURLs("black_list_area"));
+		if (idog_gcalendar())
+			rc = idog_url_allow_access_gcalendar(url);
+		else if (idog_checked(idog_white_index))
+			rc = idog_url_match(url, idog_urls(idog_white_index));
+		else if (idog_checked(idog_black_index))
+			rc = !idog_url_match(url, idog_urls(idog_black_index));
 	}
 
-	console.log("<dog> canAccess= " + rc + ":" + url);
-	
 	return rc;
 }
 
-function matchURL(url, urls)
+function idog_white_init()
 {
-	var match = true;
+	var white_list = new Object();
 
-	return match;
+	white_list.checked = true;
+	white_list.urls =
+	[
+		"137.",
+		"192.",
+		"4x-hover.png",
+		"akamai.net",
+		"android.com",
+		"bing.",
+		"evernote.com",
+		"flickr.com",
+		"github.",
+		"google.",
+		"googleusercontent.",
+		"gstatic.com",
+		"gravatar.com",
+		"imo.im",
+		"wikipedia.org",
+		"wikimedia.org",
+		"stackoverflow.com",
+		"yimg.com",
+	];
+
+	return white_list;
 }
 
-function isChecked(list_id)
+function idog_black_init()
 {
-	var rc = false;
-	var list = document.getElementById(list_id);
+	var black_list = new Object();
 
-	if (list != null)
-		rc = list.checked;
+	black_list.checked = false;
+	black_list.urls =
+	[
+		"163",
+		"360",
+		"360buy",
+		"amazon.cn",
+		"dangdang.com",
+		"joyo.",
+		"qq.com",
+		"sina.com",
+		"sohu.com",
+		"newsmth.net",
+		"weibo",
+	];
 
-	return rc;
+	return black_list;
 }
 
-function getURLs(area_id)
+function idog_load()
 {
-	var urls = null;
+	idog.blockall = window.localStorage.idog_blockall;
+	idog.google_calendar = window.localStorage.idog_google_calendar;
+	idog.list = window.localStorage.idog_list;
+}
 
-	var area = document.getElementById(area_id);
-	if (area != null)
-		urls = area.value;
+function idog_save()
+{
+	window.localStorage.idog_blockall = idog.blockall;
+	window.localStorage.idog_google_calendar = idog.google_calendar;
+	window.localStorage.idog_list = idog.list;
+}
 
-	return urls;
+function idog_init()
+{
+	idog.blockall = false;
+	idog.google_calendar = false;
+	idog.list = new Array(idog_white_init(), idog_black_init());
+}
+
+function idog_module_init()
+{
+	if (window.localStorage)
+	{
+		if (window.localStorage["idog_list"] && window.localStorage["idog_list"][0].checked)
+			idog_load();
+		else
+		{
+			idog_init();
+			idog_save();
+		}
+	}
+	else
+	{
+		alert('Your browser does NOT support localStorage');
+
+		idog_init();
+	}
 }
