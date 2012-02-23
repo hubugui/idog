@@ -4,32 +4,32 @@
 <script src="idog_popup.js"></script>
 <body onload="load_setting()">
 <div align=center> 
-		<tr align=center>
-			<td>
-				<h1>iDog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>				
-			</td>
-		</tr>
+	<tr align=center>
+		<td>
+			<h1>iDog&nbsp;&nbsp;</h1>
+		</td>
+	</tr>
 
 	<table>
 		<form>
 			<tr>
 				<td>
-					<input name="work_mode" type="radio" id="block_all" value="1" checked="true" tabIndex="1">
+					<input name="work_mode" type="radio" id="donot_block" value="donot_block" checked="true" tabIndex="1">
+					Don't Block
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input name="work_mode" type="radio" id="block_all" value="block_all" checked="true" tabIndex="2">
 					Block All
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input name="work_mode" type="radio" id="gcalendar" value="2" tabIndex="2" disabled>
-					<s>Google Calendar(unrealized)</s>
 				</td>
 			</tr>
 
 			<tr>
 				<td>
-					<input name="work_mode" type="radio" id="white_list" value="3" tabIndex="3">
+					<input name="work_mode" type="radio" id="white_list" value="white_list" tabIndex="3">
 					White list of URLs
 
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					
-					<input name="work_mode" type="radio" id="black_list" value="4" tabIndex="4">
+					<input name="work_mode" type="radio" id="black_list" value="black_list" tabIndex="4">
 					Black list of URLs
 				</td>
 			</tr>
@@ -39,6 +39,12 @@
 					<textarea name="white_list_area" id="white_list_area" rows=24 cols=22></textarea>
 					&nbsp;&nbsp;&nbsp;
 					<textarea name="black_list_area" id="black_list_area" rows=24 cols=22></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input name="work_mode" type="radio" id="gcalendar" value="gcalendar" tabIndex="5" disabled>
+					<s>Google Calendar(unrealized)</s>
 				</td>
 			</tr>
 

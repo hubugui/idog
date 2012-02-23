@@ -8,6 +8,16 @@ var idog = new Object();
 var idog_white_index = 0;
 var idog_black_index = 1;
 
+function idog_donotblock()
+{
+	return idog.donotblock;
+}
+
+function idog_donotblock_set(checked)
+{
+	idog.donotblock = checked;
+}
+
 function idog_blockall()
 {
 	return idog.blockall;
@@ -71,6 +81,8 @@ function idog_url_allow_access(url)
 	var rc = false;
 	var protocol = parseUri(url).protocol;
 
+	if (idog_donotblock() == true)
+		return true;
 	if (protocol.toLowerCase() == "file")
 		return true;
 	if (protocol.toLowerCase() == "chrome-extension")
@@ -158,6 +170,7 @@ function idog_save()
 
 function idog_init()
 {
+	idog.donotblock = false;
 	idog.blockall = false;
 	idog.google_calendar = false;
 	idog.list = new Array(idog_white_init(), idog_black_init());

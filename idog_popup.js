@@ -32,6 +32,7 @@ function load_setting()
 {
 	var bgpage = chrome.extension.getBackgroundPage();
 
+	document.getElementById("donot_block").checked = bgpage.idog_donotblock();
 	document.getElementById("block_all").checked = bgpage.idog_blockall();
 	document.getElementById("gcalendar").checked = bgpage.idog_gcalendar();
 	document.getElementById("white_list").checked = bgpage.idog_checked(bgpage.idog_white_index);
@@ -52,16 +53,17 @@ function save_setting()
 		{
 			if (elements[i].checked)
 			{
+				bgpage.idog_donotblock_set(false);
 				bgpage.idog_blockall_set(false);
-				bgpage.idog_gcalendar_set(false);
 				bgpage.idog_checked_set(bgpage.idog_white_index, false);
 				bgpage.idog_checked_set(bgpage.idog_black_index, false);
+				bgpage.idog_gcalendar_set(false);
 
-				if (elements[i].value == "1")
+				if (elements[i].value == "donot_block")
+					bgpage.idog_donotblock_set(true);
+				else if (elements[i].value == "block_all")
 					bgpage.idog_blockall_set(true);
-				else if (elements[i].value == "2")
-					bgpage.idog_gcalendar_set(true);
-				else if (elements[i].value == "3")
+				else if (elements[i].value == "white_list")
 				{
 					bgpage.idog_checked_set(bgpage.idog_white_index, true);
 					save_urls("white_list_area", 
@@ -71,7 +73,7 @@ function save_setting()
 						}
 					);
 				}
-				else if (elements[i].value == "4")
+				else if (elements[i].value == "black_list")
 				{
 					bgpage.idog_checked_set(bgpage.idog_black_index, true);
 					save_urls("black_list_area", 
@@ -81,6 +83,8 @@ function save_setting()
 						}
 					);
 				}
+				else if (elements[i].value == "gcalendar")
+					bgpage.idog_gcalendar_set(true);
 
 				if (window.localStorage)
 					bgpage.idog_save();

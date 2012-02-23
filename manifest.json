@@ -1,6 +1,6 @@
 {
 	"name": "iDog",
-	"version": "1.0",
+	"version": "1.1",
 	"description": "This extension can block Chrome internet access when your need.",
 	"background_page": "background.html",
 	"options_page": "popup.html",
