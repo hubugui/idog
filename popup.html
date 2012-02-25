@@ -13,10 +13,12 @@
 	<table>
 		<form>
 			<tr>
+
 				<td>
 					<input name="work_mode" type="radio" id="donot_block" value="donot_block" checked="true" tabIndex="1">
 					Don't Block
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+				<td>
 					<input name="work_mode" type="radio" id="block_all" value="block_all" checked="true" tabIndex="2">
 					Block All
 				</td>
@@ -26,18 +28,18 @@
 				<td>
 					<input name="work_mode" type="radio" id="white_list" value="white_list" tabIndex="3">
 					White list of URLs
-
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					
+				</td>
+				<td>
 					<input name="work_mode" type="radio" id="black_list" value="black_list" tabIndex="4">
 					Black list of URLs
 				</td>
 			</tr>
-
+			</tr>
 			<tr>
 				<td>
 					<textarea name="white_list_area" id="white_list_area" rows=24 cols=22></textarea>
-					&nbsp;&nbsp;&nbsp;
+				</td>
+				<td>
 					<textarea name="black_list_area" id="black_list_area" rows=24 cols=22></textarea>
 				</td>
 			</tr>
@@ -47,16 +49,17 @@
 					<s>Google Calendar(unrealized)</s>
 				</td>
 			</tr>
-
-			<tr align=center>
-				<td>
-					<input type="submit" value="Save" name="save" onClick="save_setting();" tabindex="5"/>
-					<input type="submit" value="Restore" name="restore" onClick="load_setting()" tabindex="6"/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				</td>
-			</tr>
 		</form>
 	</table>
+
+	</tr>	
+	</tr>	
+	<tr align=center>
+		<td>
+			<input type="submit" value="Save" name="save" onClick="save_setting();" tabindex="5"/>
+			<input type="submit" value="Restore" name="restore" onClick="load_setting()" tabindex="6"/>
+		</td>
+	</tr>
 </div>
 </body>
 </html>
